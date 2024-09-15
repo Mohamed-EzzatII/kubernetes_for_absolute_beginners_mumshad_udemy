@@ -1,0 +1,19 @@
+# create a Replication controller 
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: myapp-rc
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: postgres
+      labels:
+        tier: db-tier
+    spec:
+      containers:
+        - name: postgres
+          image: postgres
+          env:
+            - name: POSTGRES_PASSWORD
+              value: mysecretpassword

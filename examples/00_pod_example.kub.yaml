@@ -1,0 +1,26 @@
+# create a Replication controller 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    app: library_website
+    enviroment: dev
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      ports:
+      - containerPort: 80       # Port inside the container
+        hostPort: 8080          # Expose port on the host machine
+
+      env:
+        - name: POSTGRES_PASSWORD
+          value: mysecretpassword
+      resources:
+        requests:
+          memory: "256Mi"   # Minimum memory requested
+          cpu: "500m"       # Minimum CPU requested (500 millicores, or 0.5 cores)
+        limits:
+          memory: "512Mi"   # Maximum memory allowed
+          cpu: "1"          # Maximum CPU allowed (1 core)
