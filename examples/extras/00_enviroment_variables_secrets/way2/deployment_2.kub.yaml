@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-dep
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: nginx
+  template:
+    metadata: 
+      name: nginx-pod
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx-pod
+          image: nginx
+          ports:
+          - containerPort: 80
+            hostPort: 8080
+          env:
+            - name: ENVIROMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: nginx-configfile
+                  key: ENVIROMENT
+
+ 
