@@ -1,6 +1,5 @@
 # Enviroment Variables In Kubernetes
 
-we use enviroment variables to pass anything to our object.
 #### we have 3 methods to make enviroment variables : -
 1. pass it normailly in the object creation yaml file
 2. make a configMap and add the enviroment variables in it normally, then include that file in our object (we can select specific enviroment from the configMap or add it all)
@@ -93,7 +92,7 @@ minikube service --all
 ##### You will find the URL like that 
 
 😿  service default/kubernetes has no node port
- |-----------|-------|-------------|---------------------------|
+
  | NAMESPACE | NAME  | TARGET PORT |            URL            |
  |-----------|-------|-------------|---------------------------|
  | default   | nginx |          80 | http://192.168.49.2:30001 |
