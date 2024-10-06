@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-example
+spec:
+  accessModes:
+    - ReadWriteOnce            # The same access mode as in the PV
+  resources:
+    requests:
+      storage: 1Gi             # The PVC requests 0.5MB of storage
+  selector:                     # Selector to match the PV based on labels
+    matchLabels:
+      type: fast-storage        # This label must match the PV's label

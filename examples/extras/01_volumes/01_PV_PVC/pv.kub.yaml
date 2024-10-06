@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-example
+spec:
+  capacity:
+    storage: 1Gi             # Size of the PV
+  accessModes:
+    - ReadWriteOnce          # The PV can be mounted as read-write by a single node
+  persistentVolumeReclaimPolicy: Retain  # Reclaim policy
+  hostPath:
+    path: /mnt/data           # Path on the host node for storage
