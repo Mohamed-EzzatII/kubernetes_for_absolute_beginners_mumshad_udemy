@@ -350,9 +350,10 @@ data:
 > Note: The `SECRET_API_KEY` is base64-encoded (`echo -n "secret_key_value" | base64`) and to decode the secret use (`echo -n "secret_key_value_encrypted" | base64 --decode`).
 
 ##### **Deployment YAML File Using `Secret`**
-
+we can select the env to get or all the env in the secret
+###### - to select the env : -
 ```yaml
-# nginx-deployment-secret.yaml
+# nginx-deployment-secret.yaml 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -380,6 +381,34 @@ spec:
                 secretKeyRef:
                   name: nginx-secret
                   key: SECRET_API_KEY
+```
+###### - to get all of the env : -
+```yaml
+# nginx-deployment-secret.yaml 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          envFrom:
+            - secretRef:
+                name: nginx-secret
 ```
 
 ### Explanation:
